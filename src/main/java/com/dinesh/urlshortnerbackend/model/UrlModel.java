@@ -3,12 +3,14 @@ package com.dinesh.urlshortnerbackend.model;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Getter
 @Setter
+@ToString
 @Table(name = "url_mapping")
 public class UrlModel {
     @Id
@@ -16,9 +18,12 @@ public class UrlModel {
     private long id;
 
     private LocalDateTime createdAt;
+    @Column(nullable = false)
+    private int ttlMinutes;
 
     public UrlModel() {
         this.createdAt = LocalDateTime.now();
+
     }
 
     @Column(nullable = false, length = 500)
@@ -27,8 +32,6 @@ public class UrlModel {
     @Column(nullable = false)
     private String shortUrl;
 
-    @Column(nullable = false)
-    private int ttlMinutes;
 
     public LocalDateTime getExpiryTime() {
         return createdAt.plusMinutes(ttlMinutes);

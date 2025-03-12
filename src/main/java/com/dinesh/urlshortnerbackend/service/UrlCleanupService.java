@@ -12,7 +12,7 @@ public class UrlCleanupService {
         this.urlRepository = urlRepository;
     }
 
-    @Scheduled(fixedRate = 60000)
+    @Scheduled(fixedRate = 600000)
     public void cleanUp() {
         int count = urlRepository.findExpiredUrls().size();
         urlRepository.deleteExpiredUrls();

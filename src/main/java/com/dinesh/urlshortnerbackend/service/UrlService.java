@@ -36,11 +36,16 @@ public class UrlService {
         }
         UrlModel urlModel = new UrlModel();
         urlModel.setLongUrl(url);
-        urlModel.setShortUrl(shortenedUrl.toString());
         urlModel.setTtlMinutes(ttl);
+        urlModel.setShortUrl(shortenedUrl.toString());
         urlModel.setCreatedAt(LocalDateTime.now());
         urlRepo.save(urlModel);
         return Optional.of(shortenedUrl.toString());
+    }
+
+    public Optional<UrlModel> getUrl(String shortUrl) {
+        return urlRepo.findByshortUrl(shortUrl);
+
     }
 
 }
