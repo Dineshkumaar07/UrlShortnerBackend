@@ -40,14 +40,12 @@ class UrlCleanupServiceTest {
 
     @Test
     void testCleanUp_WhenNoExpiredUrls() {
-        // Given
+
         when(urlRepository.findExpiredUrls()).thenReturn(Collections.emptyList());
 
-        // When
         urlCleanupService.cleanUp();
 
-        // Then
         verify(urlRepository, times(1)).findExpiredUrls();
-        verify(urlRepository, times(1)).deleteExpiredUrls(); // Should still call delete even if empty
+        verify(urlRepository, times(1)).deleteExpiredUrls();
     }
 }

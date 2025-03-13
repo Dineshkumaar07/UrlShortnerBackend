@@ -49,7 +49,7 @@ class UrlControllerUnitTest {
         when(urlService.getUrl(shortUrl)).thenReturn(Optional.of(urlModel));
 
         ResponseEntity<Void> response = urlController.redirectToUrl(shortUrl);
-        
+                    
         assertEquals(302, response.getStatusCodeValue());
         assertEquals("https://example.com", response.getHeaders().getLocation().toString());
     }
