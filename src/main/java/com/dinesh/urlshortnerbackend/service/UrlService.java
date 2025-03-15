@@ -40,12 +40,12 @@ public class UrlService {
         urlModel.setShortUrl(shortenedUrl.toString());
         urlModel.setCreatedAt(LocalDateTime.now());
         urlRepo.save(urlModel);
+
         return Optional.of(shortenedUrl.toString());
     }
 
     public Optional<UrlModel> getUrl(String shortUrl) {
         return urlRepo.findByshortUrl(shortUrl);
-
     }
 
 }
